@@ -1,6 +1,6 @@
 from unittest.case import TestCase
 
-from impl.simple_timeline import SimpleTimeline
+from impl.timeline import SimpleTimeline
 
 
 class TestSimpleTimeline(TestCase):
