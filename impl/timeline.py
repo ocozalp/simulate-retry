@@ -1,6 +1,6 @@
 class Timeline(object):
 
-    def get(self):
+    def get(self, index):
         raise NotImplementedError("Not implemented!")
 
     def inc(self, start, end, d):
