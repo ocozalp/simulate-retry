@@ -4,7 +4,7 @@ from impl.timeline import Timeline
 class FenwickTree(Timeline):
 
     def __init__(self, max_value):
-        self.max_value = max_value
+        super(FenwickTree, self).__init__(max_value)
         self.data = [0] * (max_value + 1)
 
     def get(self, index):

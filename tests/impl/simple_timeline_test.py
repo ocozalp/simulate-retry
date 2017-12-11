@@ -1,6 +1,7 @@
 from unittest.case import TestCase
 
 from impl.fenwick_tree import FenwickTree
+from impl.time_intervals import TimeIntervals
 from impl.timeline import SimpleTimeline, Timeline
 
 
@@ -36,3 +37,6 @@ class SimpleTimelineTests(TimelineTest, TestCase):
 
 class FenwickTreeTests(TimelineTest, TestCase):
     type = FenwickTree
+
+class TimeIntervalsTests(TimelineTest, TestCase):
+    type = TimeIntervals

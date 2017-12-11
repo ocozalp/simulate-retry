@@ -1,5 +1,8 @@
 class Timeline(object):
 
+    def __init__(self, max_value):
+        self.max_value = max_value
+
     def get(self, index):
         raise NotImplementedError("Not implemented!")
 
@@ -10,7 +13,7 @@ class Timeline(object):
 class SimpleTimeline(Timeline):
 
     def __init__(self, max_value):
-        self.max_value = max_value
+        super(SimpleTimeline, self).__init__(max_value)
         self.data = [0] * (max_value+1)
 
     def get(self, index):
