@@ -3,6 +3,13 @@ Just trying something
 
 ## Runtime Test Results
 
+## Test Environment
+
+* OS X El Capitan 10.11.6
+* 3.1 GHz Intel Core i7 CPU
+* Python 2.7
+* 16 GB 1867 MHz DDR3 RAM
+
 ### Big Interval (1000000), 1000 Small Events([100, 200])
 
 |Data Structure|Result(secs)|
