@@ -37,11 +37,24 @@ class TimeIntervals(Timeline):
                 new_nodes = self.__divide_node(current, current_start, end, d)
 
                 if parent is not None:
-                    parent.next_node = new_nodes[0]
+                    if parent.val != new_nodes[0].val:
+                        parent.next_node = new_nodes[0]
+                    else:
+                        parent.end = new_nodes[0].end
+                        new_nodes[0] = parent
+                        if len(new_nodes) > 1:
+                            parent.next_node = new_nodes[1]
                 else:
                     self.head = new_nodes[0]
 
-                new_nodes[-1].next_node = next_node
+                if len(new_nodes) == 2 and next_node is not None and new_nodes[1].val == next_node.val:
+                    new_nodes[1].end = next_node.end
+                    # wtf
+                    next_node = next_node.next_node
+                    new_nodes[1].next_node = next_node
+                else:
+                    new_nodes[-1].next_node = next_node
+
                 current = new_nodes[-1]
                 current_start = current.end + 1
             elif current.start > end:
@@ -49,37 +62,6 @@ class TimeIntervals(Timeline):
 
             parent = current
             current = next_node
-
-        self.__defrag()
-
-    def __defrag(self):
-        current = self.head
-        parent = None
-        while current is not None:
-            next_node = current.next_node
-            end_node = current
-            while next_node is not None:
-                if next_node.val == current.val:
-                    end_node = next_node
-                    next_node = next_node.next_node
-                else:
-                    break
-
-            if end_node is not None and end_node != current:
-                current = self.__merge(current, end_node)
-                if parent is not None:
-                    parent.next_node = current
-                else:
-                    self.head = current
-                next_node = current.next_node
-
-            parent = current
-            current = next_node
-
-    def __merge(self, node1, node2):
-        result = TimeIntervals.Node(node1.start, node2.end, node1.val)
-        result.next_node = node2.next_node
-        return result
 
     def __divide_node(self, node, start, end, d):
         result = list()
